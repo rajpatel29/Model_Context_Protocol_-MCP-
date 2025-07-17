@@ -1,0 +1,5 @@
+mcp  # Replace with the actual MCP package name if different
+nest_asyncio
+llama-index
+llama-index-llms-ollama
+llama-index-tools-mcp
