@@ -27,15 +27,6 @@ from llama_index.core.agent.workflow import FunctionAgent
 # Create and configure the agent
 # ----------------------------
 async def get_agent(tools: McpToolSpec) -> FunctionAgent:
-    """
-    Convert tool spec to usable tools and create a FunctionAgent.
-
-    Args:
-        tools (McpToolSpec): The MCP tool specification object.
-
-    Returns:
-        FunctionAgent: Configured agent with tool access and system prompt.
-    """
     tools = await tools.to_tool_list_async()
     agent = FunctionAgent(
         name="Agent",
@@ -63,18 +54,6 @@ async def handle_user_message(
     agent_context: Context,
     verbose: bool = False,
 ) -> str:
-    """
-    Handle user input and return the agent's response.
-
-    Args:
-        message_content (str): User's message to the agent.
-        agent (FunctionAgent): The active FunctionAgent instance.
-        agent_context (Context): The current context for the conversation.
-        verbose (bool): If True, prints tool call and result info.
-
-    Returns:
-        str: The agent's response.
-    """
     handler = agent.run(message_content, ctx=agent_context)
     
     async for event in handler.stream_events():
